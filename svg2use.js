@@ -148,7 +148,7 @@ const svg2useUnpolyfill = (() => {
 			let ref = rec.target;
 			// update topologies
 			if (rec.type === 'childList') {
-				for (let cpy of ref._cpy) {
+				for (let cpy of [...ref._cpy]) {
 					unlink(ref, cpy);
 					cpy.innerHTML = ref.innerHTML.replace(
 					/<use([\s\S]+?)<\/use>/g, '<g$1</g>');
@@ -157,7 +157,7 @@ const svg2useUnpolyfill = (() => {
 			}
 			// update attributes
 			if (rec.type === 'attributes') {
-				for (let cpy of ref._cpy) {
+				for (let cpy of [...ref._cpy]) {
 					let key = rec.attributeName;
 					let val = ref.getAttribute(key);
 					cpy.setAttribute(key, val);
